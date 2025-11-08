@@ -3,35 +3,27 @@
 
 namespace homework {
 
-// 3.1a - Enum class Color
+// (a)
 enum class Color { red, green, yellow };
 
-// 3.1b - Base class Fruit
+// (b)
 class Fruit {
 public:
-    Fruit(const std::string &name, Color color)
-        : name_(name), color_(color) {}
+  Fruit(std::string name, Color color);
+  std::string getName() const;
+  Color getColor() const;
+  virtual std::string getTaste() const = 0;
 
-    std::string getName() const { return name_; }
-    Color getColor() const { return color_; }
-
-    virtual std::string getTaste() const = 0; // pure virtual
-
-    virtual ~Fruit() = default;
-
-private:
-    std::string name_;
-    Color color_;
+protected:
+  std::string name_;
+  Color color_;
 };
 
-// 3.1c - Derived class Apple
+// (c)
 class Apple : public Fruit {
 public:
-    Apple(Color color) : Fruit("apple", color) {}
-
-    std::string getTaste() const override {
-        return "sweet";
-    }
+  Apple(Color color);
+  std::string getTaste() const override;
 };
 
 } // namespace homework
